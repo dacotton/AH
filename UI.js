@@ -205,7 +205,6 @@ var UIEvent = (function($){
 	};
 	
 	var scrollSectionOnTab = function(options) {
-		alert("dd")
 		var settings = {
 			tab: "",
 			tabItem: "",
