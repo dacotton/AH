@@ -212,20 +212,23 @@ var UIEvent = (function($){
 			scrollElement: ""
 		};
 		$.extend(settings, options);
+		
 		var $tab = $(settings.tab);
 		var $tabItem = $(settings.tabItem);
 		var $scrollElement = $(settings.scrollElement);
 
 		$(document).on("scroll resize", function () {
 			var setScroll = Math.ceil($(window).scrollTop()) + settings.fixedSize;
+			if(settings.stickyPosElement){
+				tabOn(setScroll);
+			}
 			if ($tab.hasClass("on")) {
-			tabItemOn(setScroll);
+				tabItemOn(setScroll);
 			}
 		});
 
 		$tabItem.click(function () {
-			var offset =
-			$scrollElement.eq($(this).index()).offset().top - settings.fixedSize;
+			var offset = $scrollElement.eq($(this).index()).offset().top - settings.fixedSize;
 			$("html, body").animate({ scrollTop: offset }, 0);
 		});
 
@@ -235,9 +238,9 @@ var UIEvent = (function($){
 			var tabOffset = Math.floor($stickyPosElement.offset().top);
 
 			if (tabOffset <= currentScroll) {
-			$tab.addClass("on");
+				$tab.addClass("on");
 			} else {
-			$tab.removeClass("on");
+				$tab.removeClass("on");
 			}
 		}
 
@@ -247,20 +250,16 @@ var UIEvent = (function($){
 			var thisTop = $(this).offset().top - $(window).innerHeight() * 0.2;
 			var thisEnd = $(this).offset().top + $(this).outerHeight();
 			var sectionCode = $(this).attr("data-tab-contents-code");
-			var $tabButton = $(
-				settings.tabItem + "[data-tab-code='" + sectionCode + "']"
-			);
+			var $tabButton = $(settings.tabItem + "[data-tab-code='" + sectionCode + "']");
+
 			if (thisTop <= currentScroll && thisEnd >= currentScroll) {
 				$tabItem.removeClass("on");
 				$tabButton.addClass("on");
 			}
 			});
-			if (
-			Math.ceil($(window).scrollTop() + window.innerHeight) >=
-			$("body").prop("scrollHeight")
-			) {
-			$tabItem.removeClass("on");
-			$tabItem.last().addClass("on");
+			if (Math.ceil($(window).scrollTop() + window.innerHeight) >= $("body").prop("scrollHeight")) {
+				$tabItem.removeClass("on");
+				$tabItem.last().addClass("on");
 			}
 		}
 	}
