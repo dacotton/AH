@@ -205,6 +205,7 @@ var UIEvent = (function($){
 	};
 	
 	var scrollSectionOnTab = function(options) {
+		alert("dd")
 		var settings = {
 			tab: "",
 			tabItem: "",
@@ -212,7 +213,7 @@ var UIEvent = (function($){
 			scrollElement: ""
 		};
 		$.extend(settings, options);
-		
+
 		var $tab = $(settings.tab);
 		var $tabItem = $(settings.tabItem);
 		var $scrollElement = $(settings.scrollElement);
