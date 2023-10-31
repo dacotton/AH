@@ -1,5 +1,5 @@
 # AH Libery (Jquery 1.11.3+)
-*************************************************
+
 * Popup : [DEMO](https://codepen.io/95kds/pen/MWLWRxM)
 * Tab : [DEMO](https://codepen.io/95kds/pen/WNPbJpX)
 * Accordion : [DEMO](https://codepen.io/95kds/pen/LYqVGdY)
